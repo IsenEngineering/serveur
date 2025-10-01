@@ -1,14 +1,20 @@
+[accueil](/readme.md)
+
 # Créer un conteneur et un accès.
 
 En l'état, le serveur fonctionne avec des conteneurs. 
 On isole toutes les applications en les conteneurisant.
 Ca évite des problèmes de versions et c'est plus facile à gérer (ça se dés/intalle en une commande).
 
-Depuis Septembre 2025, On utilise podman pour des raisons de sécurités et d'économies.
-Pour gérer, créer ou supprimer des conteneurs, on doit passer utiliser l'utilisateur pod
-`su prenom.nom.admin` -> En administrateur
-`sudo su` -> En root
-`su pod` -> En utilisateur pod
+Depuis Septembre 2025, On utilise [podman](https://podman.io) pour des raisons de sécurités et d'économies.
+
+
+Pour gérer, créer ou supprimer des conteneurs, on doit **passer utiliser l'utilisateur pod**
+
+1. `su prenom.nom.admin` -> En administrateur
+2. `sudo su` -> En root
+3. `su pod` -> pass: pod-user
+
 
 C'est chiant oui mais si tout le monde pouvait faire n'importe quoi,
 niveau sécurité on serait embêté.
