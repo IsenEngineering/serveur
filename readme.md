@@ -16,6 +16,7 @@ Gardé dans un dépôt github de l'association, on utilise le système de Pull R
 ## Documentations
 
  - [DOC01](./doc/DOC01.md) Créer un conteneur et un accès
+ - [DOC02](./doc/DOC02.md) Modifier la documentation
 
 ## Informations
 

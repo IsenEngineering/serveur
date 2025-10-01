@@ -2,11 +2,10 @@ import { serveDir } from "@std/http/file-server"
 import { verifySignature, checkout } from "./git.ts"
 import build from "./md.ts"
 
-const port = Deno.env.get('PORT')
 const GITHUB_WEBHOOK = Deno.env.get('GITHUB_WEBHOOK')
 
 Deno.serve({
-    port: port ? parseInt(port) : 80,
+    port: 80,
     hostname: '0.0.0.0'
 }, async (req) => {
     const url = new URL(req.url)
