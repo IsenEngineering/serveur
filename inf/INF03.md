@@ -1,5 +1,6 @@
+[accueil](/readme.md)
+
 # DNS intra Wireguard
-05/09/2025
 
 On a mit en place un réseau wireguard sur l'année 2024-2025,
 Ce dernier permet d'avoir un réseau privée entre nos appareils et le serveur.
@@ -35,3 +36,5 @@ comme on lit de gauche à droite ça fait :
  - `proxy.wg.ie` <- Accès au dashboard de traefik
  - `pass.wg.ie` <- Accès au teampass (pas encore d'actualité)
  - `wg.wg.ie` <- Gestion du wireguard (pas encore d'actualité)
+
+> *Livio A, 05/09/25*

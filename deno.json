@@ -1,11 +1,12 @@
 {
   "tasks": {
-    "build": "deno run --allow-read --allow-write --allow-env src/md.ts",
-    "serve": "deno run --allow-read --allow-write --allow-net --allow-env src/serve.ts"
+    "build": "deno run --allow-read --allow-write --allow-env src/markdown.ts",
+    "serve": "deno run --allow-read --allow-write --allow-run --allow-net --allow-env src/serve.ts",
+    "dev": "deno run -A src/dev.ts"
   },
   "imports": {
     "@deno/gfm": "jsr:@deno/gfm",
-    "@std/path": "jsr:@std/path",
+    "@std/path/join": "jsr:@std/path/join",
     "@std/http/file-server": "jsr:@std/http/file-server",
     "@std/fs/exists": "jsr:@std/fs/exists",
     "prism-bash.js": "npm:prismjs@1.29.0/components/prism-bash.js",

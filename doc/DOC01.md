@@ -109,3 +109,5 @@ networks:
 
 [Documentation](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/#udp-routers)
 *sur cette page, il y a toutes les étiquettes qui existent*
+
+> *Livio A, 05/10/25*
