@@ -1,13 +1,10 @@
 import { serveDir } from "@std/http/file-server"
 import { verifySignature, checkout } from "./git.ts"
-import build from "./md.ts"
+import build from "./markdown.ts"
 
 const GITHUB_WEBHOOK = Deno.env.get('GITHUB_WEBHOOK')
 
-Deno.serve({
-    port: 80,
-    hostname: '0.0.0.0'
-}, async (req) => {
+const handler = async (req: Request): Promise<Response> => {
     const url = new URL(req.url)
 
     if(url.pathname.startsWith('/assets')) {
@@ -15,7 +12,7 @@ Deno.serve({
             fsRoot: './assets',
             urlRoot: 'assets',
             headers: [
-                'Cache-Control: max-age=14400'
+                'Cache-Control: max-age=43200'
             ]
         })
     }
@@ -42,7 +39,7 @@ Deno.serve({
                 return new Response(null, { status: 401 })
             }
 
-            console.log(`Mise à jour demandé (${ body.pusher.name })`)
+            console.log(`[PROD] Mise à jour effectuée (${ body.pusher.name })`)
 
             const success = checkout(req.signal)
 
@@ -60,4 +57,13 @@ Deno.serve({
             'Cache-Control: max-age=14400'
         ]
     })
-})
+}
+
+if(import.meta.main) {
+    Deno.serve({
+        port: 80,
+        hostname: '0.0.0.0'
+    }, handler)
+}
+
+export default handler

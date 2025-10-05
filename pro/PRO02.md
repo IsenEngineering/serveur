@@ -1,23 +1,31 @@
-# Créer une clé ssh
+[accueil](/readme.md)
 
-```bash
-ssh-keygen
-# > Choisir l'emplacement de la clé
-# > Choisir un mdp (passphrase)
-```
+# Modifier la doc.
 
-Il faudra partager **uniquement** le fichier en .pub (clé publique)
-et garder l'autre (clé privée)
+## Introduction à la documentation
 
-## Configuration SSH
-Il est possible de préconfigurer des connexions pour ne pas avoir à reécrire à chaque fois l'addresse ou l'emplacement de la clé privée
+La documentation s'écrit en markdown (un language de balisage rapide).
+L'un des grands avantages c'est qu'on n'a pas à penser à autre chose que le contenu du fichier lorsqu'on l'écrit.
 
-```bash
-# à ~/.ssh/config
-Host ie
-    	Hostname 111.222.233.244
-    	User utilisateur
-    	IdentityFile /chemin/vers/cle/privee
-```
+On suit une nomenclature pour s'assurer que la documentation reste propre.
+> #### Nomenclature
+> PROXX -> Procédure N°XX\
+> DOCXX -> Documentation N°XX\
+> INFXX -> Fiche d'information N°XX
 
-Ainsi `ssh ie` fonctionnera
+On utilise le système de pull-request pour ajouter ou retirer des documents dans la documentation. Les pull-requests pour la branch `production` déclencheront un webhook qui mettra à jour le serveur automatiquement.
+
+La documentation contient 3 types de documents
+- **Procédures** (manœuvres destinées aux administrateurs)
+- **Documentations** (documents destinées à la maintenance)
+- **Fiches d'informations**
+
+## Contribuer / Modifier
+
+1. vous devez suivre la nomenclature pour la nomination des fichiers.
+2. **déclarer** le fichier dans sa catégorie dans le readme.
+3. **écrire** votre fichier au bon endroit. (`doc/`, `inf/`, `pro/`)
+4. **envoyer** vos modifications sur une branche
+5. faire une [pull-request](https://github.com/IsenEngineering/serveur/pulls) pour l'inclure sur la branche `production`
+
+> *Livio A, 01/10/25*

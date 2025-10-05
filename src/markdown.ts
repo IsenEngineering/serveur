@@ -1,4 +1,5 @@
-import { CSS, render } from "@deno/gfm"
+import { render } from "@deno/gfm"
+// Le code en surbrillance dans ```...```
 import "prism-bash.js"
 import "prism-c.js"
 import "prism-css.js"
@@ -6,30 +7,21 @@ import "prism-docker.js"
 import "prism-typescript.js"
 import "prism-json.js"
 
-import { join } from "@std/path"
+import { join } from "@std/path/join"
 import { exists } from "@std/fs/exists"
 
+// Paramètres
 const template_path = Deno.env.get('TEMPLATE_PATH') || './template.html'
 const entree = Deno.env.get('MARKDOWN_PATH') || '.'
 const sortie = Deno.env.get('HTML_PATH') || './dist'
+const url = Deno.env.get('BASE_URL') || 'https://doc-serveur.isenengineering.fr'
 const debug = Deno.env.has('DEBUG')
 const template = await Deno.readTextFile(template_path)
-const exludes = [
-    ".git", ".vscode", "src", "dist", "assets", "old"
-]
-const date = new Date().toLocaleDateString('fr-FR', {
-    dateStyle: 'medium'
-})
-
-interface Extraction {
-    html: string,
-    titre: string,
-}
+const exclusions = [".git", ".vscode", "src", "dist", "assets", "old"]
+const date = new Date().toLocaleDateString('fr-FR', { dateStyle: 'medium' })
 
 const log = (...msg: string[]) => {
-    if(debug) {
-        console.log(...msg)
-    }
+    if(debug) console.log(...msg)
 }
 
 const ecriture = async (chemin: string, fichier: string) => {
@@ -45,15 +37,17 @@ const ecriture = async (chemin: string, fichier: string) => {
     })
 }
 
-const extract = async (path: string): Promise<Extraction> => {
+const extraire = async (path: string) => {
     if(!path.endsWith('.md')){
         throw `Le fichier doit être du markdown!`
     }
 
     const file = await Deno.readTextFile(path)
 
-    const html = render(file)
-    const titre = path.split('/').at(-1)?.slice(0, -3) || 'indefini' // on retire .md
+    const html = render(file, {
+        baseUrl: url.length > 0 ? url : undefined
+    })
+    const titre = path.split('/').at(-1)?.slice(0, -3) || '?' // on retire .md
 
     log(` - génération de ${ titre }.html depuis ${ titre }.md`)
 
@@ -67,9 +61,10 @@ const explorer = async (entree: string) => {
     const dossiers: string[] = []
 
     log(`Lecture de ${ entree } pour génération`)
+
     for await (const entite of Deno.readDir(entree)) {
         const chemin = join(entree, entite.name)
-        if(entite.isDirectory && !exludes.includes(entite.name)) {
+        if(entite.isDirectory && !exclusions.includes(entite.name)) {
             dossiers.push(chemin)
             continue;
         }
@@ -77,15 +72,14 @@ const explorer = async (entree: string) => {
             continue;
         }
         
-        const extrait = await extract(chemin)
+        const extrait = await extraire(chemin)
 
         const arrivee = join(sortie, entree, entite.name.slice(0, -3) + '.html')
         const fichier = template
             .replace('{titre}', extrait.titre)
-            .replace('{head}',`<style>${CSS}</style>`)
             .replace('{date}', date)
             .replace('{body}', extrait.html)
-            .replaceAll('.md', '.html')
+            .replaceAll('.md"', '.html"')
         
         await ecriture(arrivee, fichier)
     }

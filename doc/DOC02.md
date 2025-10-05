@@ -1,32 +1,59 @@
 [accueil](/readme.md)
 
-# Modifier la doc.
+# Système de documentation
 
-## Introduction à la documentation
+Le dépôt github se situe [ici](https://github.com/IsenEngineering/serveur), si vous n'y avez pas accès et que vous devez y accéder veuillez demander au pôle serveur ou directement au Bureau de l'isenengineering.
 
-*Je me suis chauffé pour faire un système sympa (challenge pour moi-même).*
-Concrètement, la documentation s'écrit en markdown (un language de balisage rapide).
-L'un des grands avantages c'est qu'on n'a pas à penser à autre chose que le contenu du fichier lorsqu'on l'écrit.
+## Quoi, Où et Comment
 
-On suit une nomenclature pour s'assurer que la documentation reste propre.
-> #### Nomenclature
-> PROXX -> Procédure N°XX\
-> DOCXX -> Documentation N°XX\
-> INFXX -> Fiche d'information N°XX
+Le système de documentation du pôle serveur est conçu pour permettre la délégation et la durabilité des connaissances du pôle serveur de l'IsenEngineering.
 
-On utilise le système de pull-request pour ajouter ou retirer des documents dans la documentation. Les pull-requests pour la branch `production` déclencheront un webhook qui mettra à jour le serveur automatiquement.
+Le système est divisé en deux parties, 
+1. le code/ la documentation source ([IsenEngineering/serveur](https://github.com/IsenEngineering/serveur))
+2. l'hébergement de la documentation (le serveur de l'IE)
 
-La documentation contient 3 types de documents
-- **Procédures**
-- **Documentations**
-- **Fiches d'informations**
+Pour faire simple, 
+- on a des fichiers en markdown, 
+- on les transforme en HTML (page internet) 
+- et les distribuons.
 
-## Comment
+## Variables d'environments
 
+| Variable | Valeur par défaut | ? |
+| --- | --- | --- |
+| `GITHUB_WEBHOOK` | ... | Token associé aux webhooks github |
+| `BASE_URL` | `https://doc-serveur.isenengineering.fr` | Adresse du serveur |
+| `MARKDOWN_PATH` | `.` | Emplacement des fichiers markdown |
+| `HTML_PATH` | `./dist` | Chemin de sortie des fichiers HTML |
+| `DEBUG` | | Activation des logs (dans la console)  |
+| `TEMPLATE_PATH` | `./template.html` | Chemin vers le template des pages |
 
+## Fichiers
 
-1. vous devez suivre la nomenclature pour la nomination des fichiers.
-2. **déclarer** le fichier dans sa catégorie dans le readme.
-3. **écrire** votre fichier au bon endroit. (`doc/`, `inf/`, `pro/`)
-4. **envoyer** vos modifications sur une branche
-5. faire une [pull-request](https://github.com/IsenEngineering/serveur/pulls) pour l'inclure sur la branche `production`
+| fichier(s) | ? |
+| --- | --- |
+| **Static** |  |
+| `readme.md` | Entrée de la documentation |
+| `doc/**/*/.md` | Documentations |
+| `inf/**/*/.md` | Informations |
+| `pro/**/*/.md` | Procédures |
+| `assets/**/*` | fichiers servies à `/assets/*` *(ex: css et logo)* |
+| **Code** |  |
+| `deno.json` | Configuration Deno (runtime js/ts) |
+| `Dockerfile` | Image du conteneur (serveur) |
+| `template.html` | Template de chacune des pages (logo, titre, date...) |
+| `src/` | Code du serveur (génération des pages) |
+| `src/serve.ts` | Distribution des fichiers via http |
+| `src/markdown.ts` | Transformation de `.md` à `.html` |
+| `src/git.ts` | Outils pour mettre à jour la documentation "on the fly" |
+| `src/dev.ts` | Serveur de développement (rebuild à chaque changements + serveur) |
+
+## Commandes disponibles
+
+Pour faire ce système j'ai utilisé du typescript (rapide, pas casse tête) avec Deno (runtime ts/js). Pour développer en local, vous devrez installer [deno](https://deno.com) ou vous faire un conteneur de développement.
+
+- `deno task dev`  démarre un serveur de développement, lorsque vous éditez/créez/supprimez un document, l'app reconstruit toutes les pages (c'est très très rapide).
+- `deno task build` transforme le markdown en html et le place dans `/dist`
+- `deno task serve` démarre un serveur (production) et reconstruit la doc lorsqu'il reçoit une mise à jour du dépôt github
+
+> *Livio A, 05/10/25*

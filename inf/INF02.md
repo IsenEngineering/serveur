@@ -1,5 +1,7 @@
+[accueil](/readme.md)
+
 # Migration Docker -> Podman & Nginx -> Traefik
-Faite le 03/09/2025
+Faite le 03/09/25
 avec une backup de tous les services critiques (goldenpath, tide & docmost)
 
 ## Pourquoi
@@ -54,3 +56,5 @@ devront être addresser à ce conteneur. Traefik trouve le port du conteneur tou
 
 ## Documentations
  - [todo]()
+
+> *Livio A, 03/09/25*
