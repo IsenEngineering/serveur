@@ -1,4 +1,5 @@
-[accueil](/readme.md)
+| [accueil](/readme.md) |
+| --- |
 
 # Etat du serveur le 3 Septembre 2025
 

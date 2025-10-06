@@ -14,7 +14,7 @@ import { exists } from "@std/fs/exists"
 const template_path = Deno.env.get('TEMPLATE_PATH') || './template.html'
 const entree = Deno.env.get('MARKDOWN_PATH') || '.'
 const sortie = Deno.env.get('HTML_PATH') || './dist'
-const url = Deno.env.get('BASE_URL') || 'https://doc-serveur.isenengineering.fr'
+const url = Deno.env.get('BASE_URL')
 const debug = Deno.env.has('DEBUG')
 const template = await Deno.readTextFile(template_path)
 const exclusions = [".git", ".vscode", "src", "dist", "assets", "old"]
@@ -45,7 +45,7 @@ const extraire = async (path: string) => {
     const file = await Deno.readTextFile(path)
 
     const html = render(file, {
-        baseUrl: url.length > 0 ? url : undefined
+        baseUrl: url ? url : undefined,
     })
     const titre = path.split('/').at(-1)?.slice(0, -3) || '?' // on retire .md
 

@@ -2,7 +2,7 @@
   "tasks": {
     "build": "deno run --allow-read --allow-write --allow-env src/markdown.ts",
     "serve": "deno run --allow-read --allow-write --allow-run --allow-net --allow-env src/serve.ts",
-    "dev": "deno run -A src/dev.ts"
+    "dev": "deno run --watch -A src/dev.ts"
   },
   "imports": {
     "@deno/gfm": "jsr:@deno/gfm",
