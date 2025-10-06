@@ -1,4 +1,5 @@
-[accueil](/readme.md)
+| [accueil](/readme.md) |
+| --- |
 
 # Création de comptes
 

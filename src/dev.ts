@@ -1,3 +1,5 @@
+Deno.env.set('BASE_URL', 'localhost')
+
 import build from "./markdown.ts"
 import handler from "./serve.ts"
 
@@ -13,6 +15,7 @@ const PATHS = [
     './inf',
     './readme.md'
 ]
+
 
 await build()
 Deno.serve({

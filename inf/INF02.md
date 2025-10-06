@@ -1,4 +1,5 @@
-[accueil](/readme.md)
+| [accueil](/readme.md) |
+| --- |
 
 # Migration Docker -> Podman & Nginx -> Traefik
 Faite le 03/09/25
