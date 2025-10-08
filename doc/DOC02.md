@@ -6,17 +6,16 @@
 ## Introduction
 
 > [!CAUTION]
-> Veuillez ne pas manipuler si vous ne comprenez pas.
+> Veuillez ne pas manipuler avant de comprendre.
 
 On utilise [podman](https://podman.io), un équivalent très proche de [docker](https://docker.com) (toutes les commandes docker fonctionnent avec podman, `docker ps` -> `podman ps`).
 
-Un protocole de sécurité a été mis en place pour réduire l'impact de potentiels attaques depuis les conteneurs. Vous devez utiliser l'utilisateur de service `pod` pour intéragir avec les conteneurs.
+Un protocole de sécurité a été mis en place pour réduire l'impact de potentiels attaques depuis les conteneurs. Vous devez donc utiliser l'utilisateur de service `pod` pour intéragir avec les conteneurs.
 
 **passage en utilisateur pod**
 
-1. `su prenom.nom.admin` -> En administrateur
-2. `su - pod` -> (Mots de passe à demander au responsable du pôle serveur)
-3. `cd` -> Aller dans l'espace reservé aux conteneurs.
+1. `su - pod` -> (Mots de passe à demander au responsable du pôle serveur + **le tiret génère une nouvelle session ce qui est nécessaire** pour avoir les permissions `pod` à la place des votres)
+2. `cd` ou `cd /home/pod` -> Aller dans l'espace reservé aux conteneurs.
 
 Maintenant vous pourrez utiliser la commande `pod` (`alias pod=podman`)
 

@@ -10,18 +10,28 @@ import "prism-json.js"
 import { join } from "@std/path/join"
 import { exists } from "@std/fs/exists"
 
+interface Option {
+    entree: string,
+    sortie: string,
+    url?: string,
+    debug: boolean,
+    template: string,
+    exclusions: string[],
+}
+
 // Paramètres
-const template_path = Deno.env.get('TEMPLATE_PATH') || './template.html'
-const entree = Deno.env.get('MARKDOWN_PATH') || '.'
-const sortie = Deno.env.get('HTML_PATH') || './dist'
-const url = Deno.env.get('BASE_URL')
-const debug = Deno.env.has('DEBUG')
-const template = await Deno.readTextFile(template_path)
-const exclusions = [".git", ".vscode", "src", "dist", "assets", "old"]
-const date = new Date().toLocaleDateString('fr-FR', { dateStyle: 'medium' })
+const options: Option = {
+    template: await Deno.readTextFile(Deno.env.get('TEMPLATE_PATH') || './template.html'),
+    entree: Deno.env.get('MARKDOWN_PATH') || '.',
+    sortie: Deno.env.get('HTML_PATH') || './dist',
+    url: Deno.env.get('BASE_URL'),
+    debug: Deno.env.has('DEBUG'),
+    exclusions: [".git", ".vscode", "src", "dist", "assets", "old"],
+}
+
 
 const log = (...msg: string[]) => {
-    if(debug) console.log(...msg)
+    if(options.debug) console.log(...msg)
 }
 
 const ecriture = async (chemin: string, fichier: string) => {
@@ -45,7 +55,7 @@ const extraire = async (path: string) => {
     const file = await Deno.readTextFile(path)
 
     const html = render(file, {
-        baseUrl: url ? url : undefined,
+        baseUrl: options.url ? options.url : undefined,
     })
     const titre = path.split('/').at(-1)?.slice(0, -3) || '?' // on retire .md
 
@@ -59,12 +69,13 @@ const extraire = async (path: string) => {
 
 const explorer = async (entree: string) => {
     const dossiers: string[] = []
+    const date = new Date().toLocaleDateString('fr-FR', { dateStyle: 'medium' })
 
     log(`Lecture de ${ entree } pour génération`)
 
     for await (const entite of Deno.readDir(entree)) {
         const chemin = join(entree, entite.name)
-        if(entite.isDirectory && !exclusions.includes(entite.name)) {
+        if(entite.isDirectory && !options.exclusions.includes(entite.name)) {
             dossiers.push(chemin)
             continue;
         }
@@ -74,8 +85,8 @@ const explorer = async (entree: string) => {
         
         const extrait = await extraire(chemin)
 
-        const arrivee = join(sortie, entree, entite.name.slice(0, -3) + '.html')
-        const fichier = template
+        const arrivee = join(options.sortie, entree, entite.name.slice(0, -3) + '.html')
+        const fichier = options.template
             .replace('{titre}', extrait.titre)
             .replace('{date}', date)
             .replace('{body}', extrait.html)
@@ -91,9 +102,14 @@ const explorer = async (entree: string) => {
 }
 
 if(import.meta.main) {
-    await explorer(entree)
+    await explorer(options.entree)
 }
 
-export default async () => {
-    await explorer(entree)
+export default async (opt?: Partial<Option>) => {
+    for(const key in opt) {
+        // @ts-ignore ts can't follow, or can't i?
+        options[key] = opt[key]
+    }
+
+    await explorer(options.entree)
 }
