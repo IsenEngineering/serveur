@@ -29,10 +29,10 @@ Au lieu de charger le code source sur le serveur, je construis l'image du conten
 
 *Serveur IE*
 1. `tar -xzf doc.tar.gz && rm doc.tar.gz`
-2. `chown pod:pod doc.tar`
-3. `su - pod`
-4. `pod image load -i doc.tar`
-5. `rm doc.tar`
+2. `su livio.ardoin.admin`
+3. `sudo chown pod:pod doc.tar && sudo mv doc.tar /home/pod/`
+4. `su - pod`
+5. `pod image load -i doc.tar && rm doc.tar`
 
 puis il reste plus qu'à redémarrer le serveur et supprimer l'image obselète.
 
