@@ -11,7 +11,6 @@ On distingue 3 groupes de comptes,
 - **Les comptes administrateurs**
 
 Les seuls comptent ayant les droits sudo sont les comptes administrateurs.\
-*Les comptes utilisateurs ont un UID & un GID qui doit être identique.
 
 ## Créer un compte de service
 

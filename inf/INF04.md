@@ -1,6 +1,16 @@
-[accueil](/readme.md)
+| [accueil](/readme.md) |
+| --- |
 
-# Créer une clé ssh
+## Se connecter à un hôte distant
+
+```bash
+# Connexion à 10.66.66.1 avec l'utilisateur user
+ssh user@10.66.66.1 
+# Connexion à isenengineering.fr avec l'utilisateur user et le mot de passe password
+ssh user:password@isenengineering.fr 
+```
+
+## Créer une clé ssh
 
 ```bash
 ssh-keygen
@@ -24,3 +34,6 @@ Host ie
 
 Ainsi `ssh ie` fera la même chose que \
 `ssh -I /chemin/vers/cle/privee utilisateur@111.222.233.244`
+
+
+De plus la configuration globale de ssh est située sous linux à `/etc/ssh/...`
