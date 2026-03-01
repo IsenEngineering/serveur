@@ -1,0 +1,7 @@
+:root{
+    --ie: #20396E;
+}
+
+.hextra-banner {
+    background-color: var(--ie);
+}

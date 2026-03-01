@@ -1,0 +1,33 @@
+baseURL = 'https://doc.isenengineering.fr/'
+languageCode = 'fr-FR'
+title = 'doc-ie'
+defaultContentLanguage = "fr"
+
+module.imports.path = "github.com/imfing/hextra"
+params.navbar.displayLogo = false
+
+params.docs.list.displayTags = true
+params.inf.list.displayTags = true
+params.pro.list.displayTags = true
+
+params.displayUpdatedDate = true
+params.displayUpdatedAuthor = true
+enableGitInfo = true
+
+[params.banner]
+    key = 'fautes-oublies'
+    message = "N'hésitez pas à [signaler des fautes ou des oublies](https://github.com/IsenEngineering/serveur) 🤝"
+
+[menus]
+  [[menus.main]]
+    name = 'Documentation'
+    pageRef = '/docs'
+    weight = 10
+  [[menus.main]]
+    name = 'Informations'
+    pageRef = '/inf'
+    weight = 20
+  [[menus.main]]
+    name = 'Procédures'
+    pageRef = '/pro'
+    weight = 30
