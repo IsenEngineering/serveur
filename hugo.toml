@@ -1,7 +1,8 @@
-baseURL = 'https://doc.isenengineering.fr/'
+baseURL = 'https://doc-serveur.isenengineering.fr/'
 languageCode = 'fr-FR'
 title = 'doc-ie'
 defaultContentLanguage = "fr"
+description = "Documentation du pôle serveur de l'IsenEngineering"
 
 enableInlineShortcodes = true
 enableGitInfo = true
@@ -58,3 +59,12 @@ ignoreLogs = ['warning-goldmark-raw-html']
     name = 'Informations'
     pageRef = '/inf'
     weight = 30
+  [[menus.main]]
+    name = "Rechercher"
+    weight = 31
+    params.type = "search"
+  [[menus.main]]
+    name = "GitHub"
+    weight = 32
+    url = "https://github.com/IsenEngineering/serveur"
+    params.icon = "github"
