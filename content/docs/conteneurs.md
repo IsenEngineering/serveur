@@ -1,21 +1,20 @@
 +++
 date = '2026-03-01T13:39:01+09:00'
-draft = true
-title = 'Documentation conteneurs/services'
+title = 'Conteneurs/services'
+tags = ["docker"]
 +++
 
 ## Introduction
 
-> [!CAUTION]
-> Veuillez ne pas manipuler avant de comprendre.
+On utilise [podman](https://podman.io), un équivalent très proche de [docker](https://docker.com)\
+(toutes les commandes docker fonctionnent avec podman, `docker ps` -> `podman ps`).
 
-On utilise [podman](https://podman.io), un équivalent très proche de [docker](https://docker.com) (toutes les commandes docker fonctionnent avec podman, `docker ps` -> `podman ps`).
+Un protocole de sécurité a été mis en place pour réduire l'impact de potentiels attaques depuis les conteneurs (rootless). Vous devez donc utiliser l'utilisateur de service `pod` pour intéragir avec les conteneurs.
 
-Un protocole de sécurité a été mis en place pour réduire l'impact de potentiels attaques depuis les conteneurs. Vous devez donc utiliser l'utilisateur de service `pod` pour intéragir avec les conteneurs.
+### Passage en utilisateur pod
 
-**passage en utilisateur pod**
-
-1. `su - pod` -> (Mots de passe à demander au responsable du pôle serveur + **le tiret génère une nouvelle session ce qui est nécessaire** pour avoir les permissions `pod` à la place des votres)
+1. `su - pod`, Le mot de passe est à demander au responsable du pôle serveur\
+**le tiret génère une nouvelle session** ce qui est nécessaire pour avoir les permissions `pod` à la place des votres)
 2. `cd` ou `cd /home/pod` -> Aller dans l'espace reservé aux conteneurs.
 
 Maintenant vous pourrez utiliser la commande `pod` (`alias pod=podman`)
@@ -34,9 +33,11 @@ Maintenant vous pourrez utiliser la commande `pod` (`alias pod=podman`)
 | `pod compose up -d` | Démarrer des conteneurs à l'aide d'un fichier de configuration (docker-compose.yml) |
 | `pod compose down` | Eteins les conteneurs du fichier de configuration |
 
+Naturellement, `pod --help` vous donne déjà ce résumé.
+
 ### Exemple de Docker-compose
 
-```yml
+```yaml {filename="docker-compose.yml"}
 # Définitions des services/conteneurs
 services:
   api: # nom du service dans l'assemblage
@@ -70,5 +71,3 @@ networks:
     external: true
     name: www # nom global
 ```
-
-> *Livio A, 05/10/25*

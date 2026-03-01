@@ -1,7 +1,17 @@
 :root{
+    --ie: hsl(221, 56%, 42%);
     --ie: #20396E;
 }
 
 .hextra-banner {
     background-color: var(--ie);
+}
+.bg-ie{
+    background-color: var(--ie);
+}
+
+:root {
+    --primary-hue: 221deg;
+    --primary-saturation: 55%;
+    --primary-lightness: 60%;
 }
