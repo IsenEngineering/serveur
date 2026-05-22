@@ -43,8 +43,8 @@ ignoreLogs = ['warning-goldmark-raw-html']
     base = "https://github.com/IsenEngineering/serveur/edit/v2/content"
 
 [params.banner]
-    key = 'fautes-oublies'
-    message = "N'hésitez pas à [signaler des fautes ou des oublies](https://github.com/IsenEngineering/serveur) 🤝"
+    key = 'fautes-oublis'
+    message = "N'hésitez pas à [signaler des fautes ou des oublis](https://github.com/IsenEngineering/serveur) 🤝"
 
 [menus]
   [[menus.main]]

@@ -40,7 +40,7 @@ services:
       - "traefik.http.routers.votre-service.rule=Host(`ma-route.isenengineering.fr`)"
       # On précise quel traffic on récupère (ici le port 443 avec TLS / en https)
       # on aurait pu écrire web,websecure pour prendre https et http)
-      - "traefik.http.routers.odoc-deno.entrypoints=websecure"
+      - "traefik.http.routers.votre-service.entrypoints=websecure"
     networks:
       # Le réseau dans lequel Traefik se trouve
       - www
