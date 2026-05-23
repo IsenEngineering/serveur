@@ -2,6 +2,7 @@
 date = '2026-03-01T13:39:01+09:00'
 title = 'Wireguard et DNS'
 tags = ["wireguard", "gestion"]
+author = "Loshido"
 +++
 
 [Mise en place du réseau](/inf/wg-dns)

@@ -1,6 +1,7 @@
 +++
 date = '2025-09-05T13:39:01+09:00'
 title = 'DNS intra Wireguard'
+author = "Loshido"
 +++
 
 On a mit en place un réseau wireguard sur l'année 2024-2025,

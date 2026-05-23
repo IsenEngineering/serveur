@@ -2,6 +2,7 @@
 date = '2026-03-01T13:39:01+09:00'
 title = 'Proxy'
 tags = ["docker", "traefik", "wireguard"]
+author = "Loshido"
 +++
 
 ## Introduction

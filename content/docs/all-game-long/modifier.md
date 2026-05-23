@@ -1,6 +1,7 @@
 +++
 date = '2026-05-23T13:39:01+09:00'
 weight = 2
+author = "Loshido"
 +++
 
 

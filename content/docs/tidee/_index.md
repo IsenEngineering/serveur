@@ -2,6 +2,7 @@
 date = '2026-03-15T13:39:01+09:00'
 title = 'Tidee'
 tags = []
+author = "Loshido"
 +++
 
 ## Introduction

@@ -1,6 +1,7 @@
 +++
 date = '2025-09-03T13:39:01+09:00'
 title = 'Migration vers Traefik'
+author = "Loshido"
 +++
 
 Migration de docker à podman et de Nginx à Traefik\

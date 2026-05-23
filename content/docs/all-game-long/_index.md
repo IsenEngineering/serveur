@@ -1,5 +1,6 @@
 +++
 date = '2026-05-23T13:39:01+09:00'
+author = "Loshido"
 +++
 
 # All Game Long - Bet

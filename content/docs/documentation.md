@@ -3,6 +3,7 @@ date = '2026-03-01T13:39:01+09:00'
 title = 'Système de documentation'
 tags = ["docker", "git"]
 weight = 1
+author = "Loshido"
 +++
 
 Le dépôt github se situe [ici](https://github.com/IsenEngineering/serveur), si vous n'y avez pas accès et que vous devez y accéder veuillez demander l'accès au pôle serveur.
